@@ -78,9 +78,18 @@ $$
 
 ### (c) Use the 4th order Runge-Kutta method:
 
-
-
-
+$$
+\left\{\begin{eqnarray}
+K_{k,1}&=&-\epsilon
+\\K_{\epsilon ,1}&=&-C\frac{\epsilon ^2}{k} \\
+K_{k,2}&=&-\epsilon+h\frac{K_{k,1}}{2} 
+\\K_{\epsilon ,2}&=&-C\frac{\epsilon ^2}{k}+h\frac{K_{\epsilon,1}}{2}\\
+K_{k,3}&=&-\epsilon+h\frac{K_{k,2}}{2}
+\\K_{\epsilon ,3}&=&-C\frac{\epsilon ^2}{k}+h\frac{K_{\epsilon,2}}{2}\\
+K_{k,4}&=&-\epsilon+hK_{k,3}
+\\K_{\epsilon ,4}&=&-C\frac{\epsilon ^2}{k}+hK_{\epsilon,3}\\
+\end{eqnarray}\right.
+$$
 
 ### Comment:
 
@@ -91,7 +100,7 @@ $$
 
 Results of $k$ at $t=0.5s$ ,with different number of intervals dividing [1,5]
 
-![image-20250103113451689](image-20250103113451689.png)
+<img src="image-20250103113451689.png" alt="image-20250103113451689" style="zoom:33%;" />
 
 |                 | Euler method | modified Euler method | Runge-Kutta 4 method |
 | :-------------: | :----------: | :-------------------: | :------------------: |
@@ -134,12 +143,12 @@ is a fixed point iteration formula that converges.
 
 1. Output of Bisection Method
    Root of u_tau= **0.9975830078125001**
-   Wall Shear Stress(bisection method)= **1.2439648218452932![image-20250103150630698](image-20250103150630698.png)**
+   Wall Shear Stress(bisection method)= **1.2439648218452932<img src="image-20250103150630698.png" alt="image-20250103150630698" style="zoom:33%;" />**
 
 2. Output of the Newton's Method
 
    Root of u_tau= **0.9976727452597954**
-   Wall Shear Stress(Newton's method)= **1.2441886332927707**![image-20250103150637473](image-20250103150637473.png)
+   Wall Shear Stress(Newton's method)= **1.2441886332927707**<img src="image-20250103150637473.png" alt="image-20250103150637473" style="zoom:33%;" />
 
 3. Output of a fixed point iteration that converges
    Wall Shear Stress(Fixed Point Iteration)= **1.3218985298910881** 
@@ -150,7 +159,7 @@ is a fixed point iteration formula that converges.
 
 ## Solution:
 
-First use the Householder transformation transfer matrix A into a tridiagonal matrix and than use the Gram-Schmidt process to decompose A into QR,than let A=RQ, do the QR decompesition again until the sum of the non-diagonal element of A is no bigger than 1e-10.Than the diagonal elements are the eigenvalue of A.	
+First use the Householder transformation transfer matrix A into a tridiagonal matrix and than use the Gram-Schmidt process to decompose A into QR,than let A=RQ, do the QR decomposition again until the sum of the non-diagonal element of A is no bigger than 1e-10.Than the diagonal elements are the eigenvalue of A.	
 
 ## Python Code Output:
 
@@ -168,13 +177,17 @@ $$
 
 Use the fsolve function to calculate the value of $U_+$ at $y_+ = 1,590$.Use these value as an interval to plot equation $\ref{14}$ 
 
-![clipboard](clipboard-5921566-5921569.png)
-
-![clipboard1](clipboard1-5921602.png)
-
 
 
 ## Python Code Output:
+
+1. Draw the $y_+$ vs $U_+$,Plotting the $y_+$ range using the log10 scale.
+
+   <img src="clipboard-5921566-5921569.png" alt="clipboard" style="zoom:33%;" />
+
+2. Construct piecewise linear interpolation, and draw on a figure: <img src="image-20250117201257892.png" alt="image-20250117201257892" style="zoom:%;" />
+3. For each subinterval you choose, use the Monomial polynomials up to order 3 to construct least-squares approximation and plot the answers in a figure: The interval I choose is [1, 5, 25,100,300, 590]<img src="image-20250117201354205.png" alt="image-20250117201354205" style="zoom: 15%;" />
+4. Repeat the previous step by using the Legendre polynomials up to order 3:<img src="image-20250117201418131.png" alt="image-20250117201418131" style="zoom:15%;" />
 
 # Q.6:
 
@@ -184,22 +197,22 @@ Use the fsolve function to calculate the value of $U_+$ at $y_+ = 1,590$.Use the
 
 Use Newton interpolation method to do the interpolation, use N point to divide the interval.
 
-<img src="截屏2025-01-03 16.31.34-5893101-5893103.png" alt="截屏2025-01-03 16.31.34" style="zoom:30%;" />
+<img src="截屏2025-01-03 16.31.34.png" alt="截屏2025-01-03 16.31.34" style="zoom:33%;" />
 
-### (b)Use roots of Legendre polynomial of degree (N−1), to interpolate the Runge function
+### (b) Use roots of Legendre polynomial of degree (N−1), to interpolate the Runge function
 
  Use scipy and numpy to compute the roots of Legendre polynomial of degree (N−1) and do (a) again.
 
 ### (c) Plot
 
-| N    |                           (c)                           |
-| :--- | :-----------------------------------------------------: |
-| N=15 | ![image-20250102102235703](image-20250102102235703.png) |
-| N=16 | ![image-20250102102358540](image-20250102102358540.png) |
-| N=17 | ![image-20250102102420548](image-20250102102420548.png) |
-| N=18 | ![image-20250102102437734](image-20250102102437734.png) |
-| N=19 | ![image-20250102102457806](image-20250102102457806.png) |
-| N=20 | ![image-20250102102517847](image-20250102102517847.png) |
+| N    |                             (c)                              |
+| :--- | :----------------------------------------------------------: |
+| N=15 | <img src="image-20250102102235703.png" alt="image-20250102102235703" style="zoom:33%;" /> |
+| N=16 | <img src="image-20250102102358540.png" alt="image-20250102102358540" style="zoom:33%;" /> |
+| N=17 | <img src="image-20250102102420548.png" alt="image-20250102102420548" style="zoom:33%;" /> |
+| N=18 | <img src="image-20250102102437734.png" alt="image-20250102102437734" style="zoom:33%;" /> |
+| N=19 | <img src="image-20250102102457806.png" alt="image-20250102102457806" style="zoom:33%;" /> |
+| N=20 | <img src="image-20250102102517847.png" alt="image-20250102102517847" style="zoom:33%;" /> |
 
 ### (d) Use least square approximation to approximate the Runge function
 
@@ -218,29 +231,29 @@ Use sympy to calculate the integral $\eqref{least_square}$ analytically.
 
 ### (e) Plot
 
-| N    | (e)                                                     |
-| ---- | ------------------------------------------------------- |
-| N=15 | ![image-20250102103031040](image-20250102103031040.png) |
-| N=16 | ![image-20250102103122637](image-20250102103122637.png) |
-| N=17 | ![image-20250102103215418](image-20250102103215418.png) |
-| N=18 | ![image-20250102103419075](image-20250102103419075.png) |
-| N=19 | ![image-20250102103450800](image-20250102103450800.png) |
-| N=20 | ![image-20250102103523684](image-20250102103523684.png) |
+| N    |                             (e)                              |
+| :--- | :----------------------------------------------------------: |
+| N=15 | <img src="image-20250102103031040.png" alt="image-20250102103031040" style="zoom:33%;" /> |
+| N=16 | <img src="image-20250102103122637.png" alt="image-20250102103122637" style="zoom:33%;" /> |
+| N=17 | <img src="image-20250102103215418.png" alt="image-20250102103215418" style="zoom:33%;" /> |
+| N=18 | <img src="image-20250102103419075.png" alt="image-20250102103419075" style="zoom:33%;" /> |
+| N=19 | <img src="image-20250102103450800.png" alt="image-20250102103450800" style="zoom:33%;" /> |
+| N=20 | <img src="image-20250102103523684.png" alt="image-20250102103523684" style="zoom:33%;" /> |
 
 ### (f) Now we use a reduced Gauss-Legendre quadrature and do Q.6d again.
 
 ​	Use Gauss-Legendre quadrature to compute the integral $\ref{least_square}$ numerically.
 
-### (g)Plot
+### (g) Plot
 
-| N    |                           (g)                           |
-| :--- | :-----------------------------------------------------: |
-| N=15 | ![image-20250102103048265](image-20250102103048265.png) |
-| N=16 | ![image-20250102103145218](image-20250102103145218.png) |
-| N=17 | ![image-20250102103233065](image-20250102103233065.png) |
-| N=18 | ![image-20250102103432993](image-20250102103432993.png) |
-| N=19 | ![image-20250102103503319](image-20250102103503319.png) |
-| N=20 | ![image-20250102103534822](image-20250102103534822.png) |
+| N    |                             (g)                              |
+| :--- | :----------------------------------------------------------: |
+| N=15 | <img src="image-20250102103048265.png" alt="image-20250102103048265" style="zoom:33%;" /> |
+| N=16 | <img src="image-20250102103145218.png" alt="image-20250102103145218" style="zoom:33%;" /> |
+| N=17 | <img src="image-20250102103233065.png" alt="image-20250102103233065" style="zoom:33%;" /> |
+| N=18 | <img src="image-20250102103432993.png" alt="image-20250102103432993" style="zoom:33%;" /> |
+| N=19 | <img src="image-20250102103503319.png" alt="image-20250102103503319" style="zoom:33%;" /> |
+| N=20 | <img src="image-20250102103534822.png" alt="image-20250102103534822" style="zoom:33%;" /> |
 
-
+​	As we can see from the plot the result of  Legendre polynomials to interpolate a function is the same as using polynomials and reduced quadrature to approximate a function. 
 
